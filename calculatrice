@@ -1,0 +1,53 @@
+
+def demander_nombre(message):
+    while True:  
+        entree = input(message)
+        try:
+            return float(entree)  
+        except ValueError:
+            print("Erreur : Veuillez entrer un nombre valide.")  
+
+def demander_operation():
+    while True:  
+        operation = input("Veuillez entrer une opération (+, -, *, /) : ")
+        if operation in ["+", "-", "*", "/"]:
+            return operation  
+        else:
+            print("Erreur : Opération non reconnue. Veuillez réessayer.")  
+
+def calculer(nombre1, nombre2, operation):
+    if operation == "+":
+        return nombre1 + nombre2
+    elif operation == "-":
+        return nombre1 - nombre2
+    elif operation == "*":
+        return nombre1 * nombre2
+    elif operation == "/":
+        if nombre2 == 0: 
+            print("Erreur : Division par zéro impossible. Veuillez réessayer.")
+            return None  
+        return nombre1 / nombre2
+
+def main():
+    print("Bienvenue dans votre calculatrice !")
+    
+    while True: 
+        nombre1 = demander_nombre("Veuillez entrer le premier nombre : ")
+        nombre2 = demander_nombre("Veuillez entrer le deuxième nombre : ")
+        
+        operation = demander_operation()
+        
+        resultat = calculer(nombre1, nombre2, operation)
+        
+        if resultat is not None:
+            print(f"Le résultat de {nombre1} {operation} {nombre2} est : {resultat}") 
+
+        # .strip() et .lowwer() servent respectivement à effacer les éventuels espaces 
+        # et c
+        if recommencer != "oui" or != "o":    
+        recommencer = input("Voulez-vous effectuer un autre calcul ? (oui/non) : ").strip().lower() 
+            print("Merci d'avoir utilisé la calculatrice. À bientôt !")
+            break  
+
+
+main() 

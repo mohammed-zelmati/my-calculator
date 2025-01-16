@@ -1,0 +1,37 @@
+print("Bienvenue dans votre calculatrice !")
+
+print("Veuillez entrer le premier nombre :")
+nombre1 = input()
+try:
+    nombre1 = float(nombre1)
+except ValueError:
+    print("Erreur : Veuillez entrer un nombre valide.")
+    exit()
+
+print("Veuillez entrer le deuxième nombre :")
+nombre2 = input()
+try:
+    nombre2 = float(nombre2)
+except ValueError:
+    print("Erreur : Veuillez entrer un nombre valide.")
+    exit()
+
+print("Veuillez entrer une opération (+, -, *, /) :")
+operation = input()
+
+if operation == "+":
+    resultat = nombre1 + nombre2
+elif operation == "-":
+    resultat = nombre1 - nombre2
+elif operation == "*":
+    resultat = nombre1 * nombre2
+elif operation == "/":
+    if nombre2 == 0:
+        print("Erreur : Division par zéro impossible.")
+        exit()
+    resultat = nombre1 / nombre2
+else:
+    print("Erreur : Opération non reconnue.")
+    exit()
+
+print(f"Le résultat de {nombre1} {operation} {nombre2} est : {resultat}")

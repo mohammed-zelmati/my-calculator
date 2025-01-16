@@ -1,0 +1,33 @@
+def demander_nombre(message):
+    while True:  
+        entree = input(message)
+        try:
+            return float(entree)  
+        except ValueError:
+            print("Erreur : Veuillez entrer un nombre valide.")  
+
+print("Bienvenue dans votre calculatrice !")
+
+nombre1 = demander_nombre("Veuillez entrer le premier nombre : ")
+nombre2 = demander_nombre("Veuillez entrer le deuxième nombre : ")
+
+print("Veuillez entrer une opération (+, -, *, /) :")
+operation = input()
+
+if operation == "+":
+    resultat = nombre1 + nombre2
+elif operation == "-":
+    resultat = nombre1 - nombre2
+elif operation == "*":
+    resultat = nombre1 * nombre2
+elif operation == "/":
+    if nombre2 == 0:  
+        print("Erreur : Division par zéro impossible.")
+    else:
+        resultat = nombre1 / nombre2
+else:
+    print("Erreur : Opération non reconnue.")
+    resultat = None  
+
+if resultat is not None:
+    print(f"Le résultat de {nombre1} {operation} {nombre2} est : {resultat}")
