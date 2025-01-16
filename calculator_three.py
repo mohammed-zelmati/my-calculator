@@ -25,7 +25,7 @@ def get_operations():
         if operation1 in ['+', '-', '*', '/'] and operation2 in ['+', '-', '*', '/']:
             return operation1, operation2
         else:
-            print("\n========= Invalid operation. Please enter one of the following operations: +, -, *, / : ")
+            print("\n========= Invalid operation. Please enter two of the following operations: +, -, *, / : ")
 
 # Do the calculations of three numbers with two digits after the decimal point and handle divide-by-zero errors
 def calculate(num1, num2, num3, operation1, operation2):
