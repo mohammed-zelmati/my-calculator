@@ -1,7 +1,8 @@
 # |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 #                                                                                                           |||||
 # Project to make a calculator allowing the user to write mathematical expressions and evaluate them.       |||||
-# This program must ask the user for several pieces of information, three integers or decimals, as well       |||||
+# This program must ask the user for several pieces of information, three integers or decimals, as well     |||||
+# This program must ask the user for several pieces of information, three integers or decimals, as well     |||||
 # as the type of operation desired (+ , / , * ,  - , **).                                                   |||||
 # This calculator can perform the requested operations and handle any errors like incorrect entries or      |||||
 # illegal operations and provide explicit error messages.                                                   |||||
@@ -41,33 +42,105 @@ def get_operations():
             print("\n||||||||||| Invalid operation. Please enter one of the following operations: +, -, *, /, ** : ")
 
 # Calculation of three numbers and two operations [+ , * , - , / , **]
-def calculate(num1, num2, num3, operation1, operation2):
-    # Function to perform a single operation
-    def operation_one(a, b, op):
-        if op == '+':
-            return a + b
-        elif op == '-':
-            return a - b
-        elif op == '*':
-            return a * b
-        elif op == '/':
-            return a / b if b != 0 else "||||||||||| ERROR: Division by zero"
-        elif op == '**':
-            return a ** b
-        else:
-            return "||||||||||| Unknown operation"
-    # Transactions are applied according to their priority
-    if operation1 in ['*', '/', '**']:# If Operation1 has a high priority
-        result1 = operation_one(num1, num2, operation1)
-        result2 = operation_one(result1, num3, operation2)
-    elif operation2 in ['*', '/', '**']:  # If Operation2 has a high priority
-        result1 = operation_one(num2, num3, operation2)
-        result2 = operation_one(num1, result1, operation1)
-    else:  # If neither operation is of high priority
-        result1 = operation_one(num1, num2, operation1)
-        result2 = operation_one(result1, num3, operation2)
-    
-    return round(result2,2)
+def calculate(num1, num2, num3, operation1, operation2): 
+    if operation1 == "**" and operation2 == "**" :
+        result1 = num1 ** num2 
+        result2 = result1 ** num3
+    elif operation1 == "**" and operation2 == "*":
+        result1 = num1 ** num2
+        result2 = result1 * num3
+    elif operation1 == "**" and operation2 == "/":
+        result1 = num1 ** num2
+        if num3 != 0 :   
+            result2 = result1 / num3
+        else: 
+            print("Error : Invalid devision zero !")    
+    elif operation1 == "**" and operation2 == "+":
+            result1 = num1 ** num2
+            result2 = result1 + num3
+    elif operation1 == "**" and operation2 == "-":
+            result1 = num1 ** num2
+            result2 = result1 - num3  
+
+    elif operation1 == "*" and operation2 == "**" :
+        result1 = num2 ** num3
+        result2 = num1 * result1
+    elif operation1 == "*" and operation2 == "*":
+        result2 = num1 * num2 * num3
+    elif operation1 == "*" and operation2 == "/":
+        result1 = num1 * num2
+        if num3 != 0 :   
+            result2 = result1 / num3
+        else: 
+            print("Error : Invalid devision zero !")    
+    elif operation1 == "*" and operation2 == "+":
+            result1 = num1 * num2
+            result2 = result1 + num3
+    elif operation1 == "*" and operation2 == "-":
+            result1 = num1 * num2
+            result2 = result1 - num3  
+
+    elif operation1 == "/" and operation2 == "**" :
+        result1 = num2 ** num3
+        if result1 != 0:
+            result2 = num1 / result1
+        else: print("Error : Invalid devision zero !")    
+    elif operation1 == "/" and operation2 == "*":
+        result1 = num2 * num3
+        if result1 != 0:
+            result2 = num1 / result1
+        else: print("Error : Invalid devision zero !") 
+    elif operation1 == "/" and operation2 == "/":
+        if num3 != 0 and num2 != 0:
+            result1 = num1 / num2
+            result2 = result1 / num3
+        else: 
+            print("Error : Invalid devision zero !")    
+    elif operation1 == "/" and operation2 == "+":
+        if num2 != 0:
+            result1 = num1 / num2
+            result2 = result1 + num3
+        else: print("Error : Invalid devision zero !")    
+    elif operation1 == "/" and operation2 == "-":
+        if num2 != 0:
+            result1 = num1 / num2
+            result2 = result1 - num3  
+
+    elif operation1 == "+" and operation2 == "**" :
+        result1 = num2 ** num3
+        result2 = num1 + result1   
+    elif operation1 == "+" and operation2 == "*":
+        result1 = num2 * num3
+        result2 = num1 + result1
+    elif operation1 == "+" and operation2 == "/":
+        if num3 != 0 :
+            result1 = num2 / num3
+            result2 = num1 + result1
+        else: 
+            print("Error : Invalid devision zero !")    
+    elif operation1 == "+" and operation2 == "+":
+        result2 = num1 + num2 + num3    
+    elif operation1 == "+" and operation2 == "-":
+        result2 = num1 + num2 - num3    
+
+    elif operation1 == "-" and operation2 == "**" :
+        result1 = num2 ** num3
+        result2 = num1 - result1   
+    elif operation1 == "-" and operation2 == "*":
+        result1 = num2 * num3
+        result2 = num1 - result1
+    elif operation1 == "-" and operation2 == "/":
+        if num3 != 0 :
+            result1 = num2 / num3
+            result2 = num1 - result1
+        else: 
+            print("Error : Invalid devision zero !")    
+    elif operation1 == "-" and operation2 == "+":
+        result2 = num1 - num2 + num3    
+    elif operation1 == "-" and operation2 == "-":
+        result2 = num1 - num2 - num3       
+
+    return round(result2, 2)
 
 # View history if it exists or not
 def show_history(history):
@@ -103,7 +176,7 @@ def main():
     history = []
     while True:
         main_menu()
-        choice = input("\n||||||||||| Enter your choice (number between 1 and 5) : ")
+        choice = input("\n ||||||||||| Enter your choice (number between 1 and 5) : ")
         #  Choice 1 : Perform an operation
         if choice == '1':
             num1, num2, num3 = get_numbers()
