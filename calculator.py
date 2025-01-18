@@ -1,3 +1,15 @@
+# |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+#                                                                                                           |||||
+# Project to make a calculator allowing the user to write mathematical expressions and evaluate them.       |||||
+# This program must ask the user for several pieces of information, two integers or decimals, as well       |||||
+# as the type of operation desired (+ , / , * ,  - , **).                                                   |||||
+# This calculator can perform the requested operations and handle any errors like incorrect entries or      |||||
+# illegal operations and provide explicit error messages.                                                   |||||
+# Respecting the order of operational priorities.                                                           |||||
+#                                                                                                           |||||
+# |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
+
 # Le menu principal de choix
 def main_menu():
     print("\n========== Welcome to the calculator! ===========\n")
