@@ -42,102 +42,82 @@ def get_operations():
 
 # Calculation of three numbers and two operations [+ , * , - , / , **]
 def calculate(num1, num2, num3, operation1, operation2): 
-    if operation1 == "**" and operation2 == "**" :
-        result1 = num1 ** num2 
-        result2 = result1 ** num3
-    elif operation1 == "**" and operation2 == "*":
+    if operation1 == "**" and operation2 in ["**", "*", "/", "+", "-"]:
         result1 = num1 ** num2
-        result2 = result1 * num3
-    elif operation1 == "**" and operation2 == "/":
-        result1 = num1 ** num2
-        if num3 != 0 :   
+        if operation2 == "**":
+            result2 = result1 ** num3
+        elif operation2 == "*":
+            result2 = result1 * num3
+        elif operation2 == "/":
             result2 = result1 / num3
-        else: 
-            print("Error : Invalid devision zero !")    
-    elif operation1 == "**" and operation2 == "+":
-            result1 = num1 ** num2
+        elif operation2 == "+":
             result2 = result1 + num3
-    elif operation1 == "**" and operation2 == "-":
-            result1 = num1 ** num2
-            result2 = result1 - num3  
-
-    elif operation1 == "*" and operation2 == "**" :
-        result1 = num2 ** num3
-        result2 = num1 * result1
-    elif operation1 == "*" and operation2 == "*":
-        result2 = num1 * num2 * num3
-    elif operation1 == "*" and operation2 == "/":
-        result1 = num1 * num2
-        if num3 != 0 :   
-            result2 = result1 / num3
-        else: 
-            print("Error : Invalid devision zero !")    
-    elif operation1 == "*" and operation2 == "+":
-            result1 = num1 * num2
+        elif operation2 == "-":
+            result2 = result1 - num3
+ 
+    elif operation1 == "*" and operation2 in ["**", "*", "/", "+", "-"] :       
+        if operation2 == "**":
+            result1 = num2 ** num3
+            result2 = num1 * result1
+        result1 = num1 * num2   
+        if operation2 == "*":
+            result2 = result1 * num3
+        elif operation2 == "/":
+            if num3 != 0:
+                result2 = result1 / num3
+            else: print("Error : Invalid devision zero !")
+        elif operation2 == "+":
             result2 = result1 + num3
-    elif operation1 == "*" and operation2 == "-":
-            result1 = num1 * num2
-            result2 = result1 - num3  
+        elif operation2 == "-":
+            result2 = result1 - num3
 
-    elif operation1 == "/" and operation2 == "**" :
-        result1 = num2 ** num3
-        if result1 != 0:
+    elif operation1 == "/" and operation2 in  ["**", "*", "/", "+", "-"] and num3 != 0 and num2 != 0:   
+        if operation2 == "**":
+            result1 = num2 ** num3
             result2 = num1 / result1
-        else: print("Error : Invalid devision zero !")    
-    elif operation1 == "/" and operation2 == "*":
-        result1 = num2 * num3
-        if result1 != 0:
+        elif operation2 == "*":
+            result1 = num2 * num3
             result2 = num1 / result1
-        else: print("Error : Invalid devision zero !") 
-    elif operation1 == "/" and operation2 == "/":
-        if num3 != 0 and num2 != 0:
-            result1 = num1 / num2
-            result2 = result1 / num3
-        else: 
-            print("Error : Invalid devision zero !")    
-    elif operation1 == "/" and operation2 == "+":
-        if num2 != 0:
-            result1 = num1 / num2
-            result2 = result1 + num3
-        else: print("Error : Invalid devision zero !")    
-    elif operation1 == "/" and operation2 == "-":
-        if num2 != 0:
-            result1 = num1 / num2
-            result2 = result1 - num3  
+        result1 = num1 / num2    
+        if operation2 == "/" :  result2 = result1 / num3    
+        elif operation2 == "+": result2 = result1 + num3  
+        elif operation2 == "-": result2 = result1 - num3  
 
-    elif operation1 == "+" and operation2 == "**" :
-        result1 = num2 ** num3
-        result2 = num1 + result1   
-    elif operation1 == "+" and operation2 == "*":
-        result1 = num2 * num3
-        result2 = num1 + result1
-    elif operation1 == "+" and operation2 == "/":
-        if num3 != 0 :
-            result1 = num2 / num3
+    elif operation1 == "+" and operation2  in  ["**", "*", "/", "+", "-"] :
+        if operation2  == "**":
+            result1 = num2 ** num3
+            result2 = num1 + result1   
+        elif operation2 == "*":
+            result1 = num2 * num3
             result2 = num1 + result1
-        else: 
-            print("Error : Invalid devision zero !")    
-    elif operation1 == "+" and operation2 == "+":
-        result2 = num1 + num2 + num3    
-    elif operation1 == "+" and operation2 == "-":
-        result2 = num1 + num2 - num3    
+        elif operation2 == "/":
+            if num3 != 0 :
+                result1 = num2 / num3
+                result2 = num1 + result1
+            else: 
+                print("Error : Invalid devision zero !")    
+        elif operation2 == "+":
+            result2 = num1 + num2 + num3    
+        elif operation2 == "-":
+            result2 = num1 + num2 - num3    
 
-    elif operation1 == "-" and operation2 == "**" :
-        result1 = num2 ** num3
-        result2 = num1 - result1   
-    elif operation1 == "-" and operation2 == "*":
-        result1 = num2 * num3
-        result2 = num1 - result1
-    elif operation1 == "-" and operation2 == "/":
-        if num3 != 0 :
-            result1 = num2 / num3
+    elif operation1 == "-" and operation2 in  ["**", "*", "/", "+", "-"] :
+        if operation2 ==  "**":
+            result1 = num2 ** num3
+            result2 = num1 - result1   
+        elif operation2 == "*":
+            result1 = num2 * num3
             result2 = num1 - result1
-        else: 
-            print("Error : Invalid devision zero !")    
-    elif operation1 == "-" and operation2 == "+":
-        result2 = num1 - num2 + num3    
-    elif operation1 == "-" and operation2 == "-":
-        result2 = num1 - num2 - num3       
+        elif operation2 == "/":
+            if num3 != 0 :
+                result1 = num2 / num3
+                result2 = num1 - result1
+            else: 
+                print("Error : Invalid devision zero !")    
+        elif operation2 == "+":
+            result2 = num1 - num2 + num3    
+        elif operation2 == "-":
+            result2 = num1 - num2 - num3       
 
     return round(result2, 2)
 
