@@ -71,19 +71,31 @@ def calculate(num1, num2, num3, operation1, operation2):
         elif operation2 == "-":
             result2 = result1 - num3
 
-    elif operation1 == "/" and operation2 in  ["**", "*", "/", "+", "-"] and num3 != 0 and num2 != 0:   
+    elif operation1 == "/" and num2 != 0  :   
         if operation2 == "**":
             result1 = num2 ** num3
-            result2 = num1 / result1
-        elif operation2 == "*":
+            if result1 != 0:
+                result2 = num1 / result1
+            else : print("Error: division by zero") 
+        elif operation2 == "*" :
             result1 = num2 * num3
-            result2 = num1 / result1
-        result1 = num1 / num2    
-        if operation2 == "/" :  result2 = result1 / num3    
-        elif operation2 == "+": result2 = result1 + num3  
-        elif operation2 == "-": result2 = result1 - num3  
-
-    elif operation1 == "+" and operation2  in  ["**", "*", "/", "+", "-"] :
+            if result1 != 0:
+                result2 = num1 / result1
+            else: print("Error: division by zero")  
+        elif operation2 == "/" :
+            if num2 != 0 and num3 !=0 :
+                result1 = num1 / num2
+                result2 = result1 / num3
+            else:  print("Error: division by zero")             
+        elif operation2 == "+" : 
+            result1 = num1 / num2
+            result2 = result1 + num3
+        elif operation2 == "-":  
+            result1 = num1 / num2
+            result2 = result1 - num3  
+    else: print("Error: division by zero")
+    
+    if operation1 == "+" and operation2  in  ["**", "*", "/", "+", "-"] :
         if operation2  == "**":
             result1 = num2 ** num3
             result2 = num1 + result1   
@@ -94,9 +106,9 @@ def calculate(num1, num2, num3, operation1, operation2):
             if num3 != 0 :
                 result1 = num2 / num3
                 result2 = num1 + result1
-            else: 
-                print("Error : Invalid devision zero !")    
-        elif operation2 == "+":
+        else: 
+            print("Error : Invalid devision zero !")    
+        if operation2 == "+":
             result2 = num1 + num2 + num3    
         elif operation2 == "-":
             result2 = num1 + num2 - num3    
@@ -162,7 +174,7 @@ def main():
             operation1, operation2 = get_operations()
             result = calculate(num1, num2, num3, operation1, operation2)
             if result is not None:
-                print(f"\n||||||||||| The result of:\n {num1} {operation1} {num2} {operation2} {num3} = {result} ")
+                print(f"\n||||||||||| The result of:\n {num1} {operation1} {num2} {operation2} {num3} = {result}")
                 history.append(f"{num1} {operation1} {num2} {operation2} {num3} = {result}")
         # choice 2 : View history
         elif choice == '2':
